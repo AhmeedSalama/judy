@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Happy Birthday Joudy</title>
+</head>
+<body>
+
+
+<style type="text/css">
+	
+	* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600&display=swap");
+
+body {
+  font-family: "Karla", sans-serif;
+  font-weight: 500;
+}
+
+section {
+  background: url("https://images.unsplash.com/photo-1602631985686-1bb0e6a8696e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")
+    no-repeat center;
+  background-size: cover;
+  position: relative;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+section .heading {
+  font-size: clamp(3.5rem, 3rem, 2.2rem);
+  padding: 40px 0px;
+  position: relative;
+  color: #f1f1f1;
+  text-align: center;
+  height: 40vh;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-content: center;
+  max-width: 1200px;
+  margin-inline: auto;
+  position: relative;
+  margin-top:20px;
+}
+
+.timer {
+  text-align: center;
+}
+
+.timer h3 {
+  color: #fff;
+  font-size: clamp(3rem, 2.5rem, 2rem);
+  margin-bottom: 10px;
+}
+
+.timer p {
+  color: #f1f1f1;
+  font-size: clamp(3rem, 2rem, 1rem);
+  margin-bottom: 10px;
+}
+
+
+</style>
+
+
+<section>
+  <h1 class="heading">Joudy's Birthday</h1><br><br><br>
+  <!--continer-->
+  <div class="container">
+    <div class="timer">
+      <h3 id="day">00</h3>
+      <p>Days</p>
+    </div>
+    <div class="timer">
+      <h3 id="hour">00</h3>
+      <p>Hours</p>
+    </div>
+    <div class="timer">
+      <h3 id="minute">00</h3>
+      <p>Minutes</p>
+    </div>
+    <div class="timer">
+      <h3 id="second">00</h3>
+      <p>Seconds</p>
+    </div>
+  </div>
+  <!--/continer-->
+
+  <h2 class="heading"></h2>
+</section>
+
+
+
+<script type="text/javascript">
+	
+	//============= birtday countdown
+let birthdayDate = new Date("03/18/2023"); // set birthday 
+let seconds = 1000;
+let minutes = 60 * seconds;
+let hours = 60 * minutes;
+let days = 24 * hours;
+let timer = setInterval(updateTimer, seconds);
+
+function updateTimer() {
+  let today = new Date();
+  let diffrence = birthdayDate - today;
+  if (diffrence <= -days) {
+    document.querySelector("h2").innerHTML = "Had a nice Birthday";
+    clearInterval(timer);
+    return;
+  } else if (diffrence <= 0) {
+    document.querySelector("h2").innerHTML = "Happy Birthday!";
+    clearInterval(timer);
+    return;
+  }
+  //=========== get day hours minutes seconds
+  let d = Math.floor(diffrence / days);
+  let h = Math.floor((diffrence % days) / hours);
+  let m = Math.floor((diffrence % hours) / minutes);
+  let s = Math.floor((diffrence % minutes) / seconds);
+  document.querySelector("#day").textContent = d;
+  document.querySelector("#hour").textContent = h;
+  document.querySelector("#minute").textContent = m;
+  document.querySelector("#second").textContent = s;
+}
+
+
+</script>
+
+
+</body>
+</html>
